@@ -7,8 +7,13 @@ name = "hmc-optimizer"
 version = "0.1.0"
 description = "HMC hyperparameter tuning for pure-QCD Grid binaries on AmSC."
 requires-python = ">=3.11"
+# `femtomeas` (from sibling repo HadronsJobBuilder) is a hard runtime
+# dependency, but PEP 508 file URIs require absolute paths so we can't
+# express "../HadronsJobBuilder" portably. Install it first per the
+# bootstrap (`pip install -e ../HadronsJobBuilder`); importing
+# hmc_optimizer without it will fail loudly at import-time via
+# `_iri.py`.
 dependencies = [
-    "femtomeas @ file://../HadronsJobBuilder",
     "mlflow[genai]>=2.20",
     "jinja2>=3.1",
     "pydantic>=2.9",
