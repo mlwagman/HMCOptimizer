@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# MLflow local runs (the canonical store lives on AmSC)
+mlruns/
+
+# Resume / session files
+.hmc_optimizer/
+
+# Compiled HMC driver binaries (rebuild from source on each host)
+.claude/skills/hmc-tune/templates/driver/hmc_driver_leapfrog
+.claude/skills/hmc-tune/templates/driver/hmc_driver_omelyan
+.claude/skills/hmc-tune/templates/driver/hmc_driver_fg
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp

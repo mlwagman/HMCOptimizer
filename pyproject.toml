@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hmc-optimizer"
+version = "0.1.0"
+description = "HMC hyperparameter tuning for pure-QCD Grid binaries on AmSC."
+requires-python = ">=3.11"
+dependencies = [
+    "femtomeas @ file://../HadronsJobBuilder",
+    "mlflow[genai]>=2.20",
+    "jinja2>=3.1",
+    "pydantic>=2.9",
+]
+
+[project.optional-dependencies]
+optuna = ["optuna>=3.6"]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+]
+
+[project.scripts]
+hmc-submit = "scripts.hmc_submit:main"
+hmc-status = "scripts.hmc_status:main"
+hmc-report = "scripts.hmc_report:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+# `slow` tests compile and run a real Grid HMC binary — skip by default;
+# opt in with `pytest -m slow` or by setting HMC_DRIVER_PREFIX.
+markers = [
+    "slow: tests that execute a compiled Grid HMC binary (skipped by default)",
+]
+addopts = "-m 'not slow'"
